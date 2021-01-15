@@ -1,5 +1,45 @@
 .App {
-  height: 100%;
+  max-height: 100%;
   display: flex;
-  background-color: rgb(23, 5, 56);
+  flex-direction: row;
+}
+
+.priveiw-rapping{
+  height: 100%;
+  padding-right: 30%;
+}
+
+/* .img_preview{
+  min-width: auto;
+  min-height: 100%;
+} */
+
+
+.img_preview{
+  position: absolute; top:0; left: 0;
+  width: 70%;
+  height: 100%;
+}
+
+
+.side{
+  min-height: 100%;
+  width:30%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #37474f;
+  overflow-y: auto;
+  overflow-x: hidden;
+  float: right;
+  border-left: 1.3px solid gray;
+}
+
+.side-header{
+  color: aliceblue;
+  height: 30px;
+  transition: width 300ms cubic-bezier(1, 0.03, 0.58, 1) 0ms;
+  background-color: #102027;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
 }

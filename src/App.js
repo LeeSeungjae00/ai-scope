@@ -1,15 +1,17 @@
 
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
+import Typography from '@material-ui/core/Typography';
 import './App.css';
 
 function App() {
   const [file, setFile] = useState('');
   const [previewURL, setPreviewURL] = useState('');
-  const [preview,setPreview] = useState(null);
-
+  const [preview, setPreview] = useState(null);
+  const fileRef = useRef();
 
   useEffect(() => {
-    setPreview(<img className='img_preview' width = "100%" height = "100%" src={previewURL}></img>);
+    if (file !== '')
+      setPreview(<img className='img_preview' src={previewURL}></img>);
     return () => {
     }
   }, [previewURL])
@@ -23,20 +25,35 @@ function App() {
       setFile(file);
       setPreviewURL(reader.result);
     }
-    reader.readAsDataURL(file);
+    if (file)
+      reader.readAsDataURL(file);
+  }
+
+  const handleFileButtonClick = (e) => {
+    e.preventDefault();
+    fileRef.current.click();
   }
 
 
 
   return (
-    <div className="App">
-      <div style = {{width : "30%"}}>
-        <input type='file' onChange={handleFileOnChange}></input>
-      </div>
-      <div style = {{width : "70%"}}>
+    <>
+      <div className="priveiw-rapping">
         {preview}
       </div>
-    </div>
+      
+      <aside className="side">
+        <input ref={fileRef} hidden={true} id="file" type='file' onChange={handleFileOnChange}></input>
+        <header className="side-header">
+          <Typography align="center" variant="overline" display="block" gutterBottom>
+            Title text
+        </Typography>
+        </header>
+        <div style={{ padding: 10 }}>
+          <button onClick={handleFileButtonClick}>UPLOAD</button>
+        </div>
+      </aside>
+    </>
   );
 }
 
