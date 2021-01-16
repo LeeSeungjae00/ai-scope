@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: 'rgb(140 140 140);',
-    background: '#292929'
+     background: '#292929'
   },
   buttonArray: {
     width: '100%'
@@ -62,18 +62,18 @@ function App() {
 
 
   return (
-    <>
+    <div className = "App">
       <div className="priveiw-rapping">
         {preview}
       </div>
-
-      <aside className="side">
-        <input ref={fileRef} hidden={true} id="file" type='file' onChange={handleFileOnChange}></input>
-        <header className="side-header">
-          <Typography align="center" variant="overline" display="block" gutterBottom>
+      <header className="side-header">
+          <Typography align="center" variant="overline" display="block">
             AI-assisted Endoscopic Diagnostic Device
         </Typography>
         </header>
+      <aside className="side">
+        <input ref={fileRef} hidden={true} id="file" type='file' onChange={handleFileOnChange}></input>
+        
         <div style={{ padding: 10 }}>
           {/* <button onClick={handleFileButtonClick}>UPLOAD</button> */}
           <Grid container spacing={3}>
@@ -119,7 +119,7 @@ function App() {
           </Grid>
         </div>
       </aside>
-    </>
+    </div>
   );
 }
 
