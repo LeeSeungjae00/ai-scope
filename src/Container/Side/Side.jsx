@@ -2,6 +2,7 @@ import { React, useRef } from 'react';
 import { Grid, ButtonGroup, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SideContent from '../SideContent/SideContent';
+import { CloudUploadOutlined, SendOutlined } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
       flex: 1,
       color: '#c7c7c7',
       borderColor: '#c7c7c7'
+    },
+    icon : {
+        marginRight : "3px",
+        width : "0.7em"
     }
   }));
 
@@ -30,8 +35,12 @@ export default function Side({onChangeFile, onFileButtonClick}) {
                         aria-label="text primary button group">
                         <Button className={classes.button} onClick={(e) =>{
                             onFileButtonClick(e, fileRef);
-                        }} >UPLOAD</Button>
-                        <Button className={classes.button}>SEND</Button>
+                        }}>
+                            <CloudUploadOutlined className = {classes.icon}></CloudUploadOutlined>
+                            UPLOAD</Button>
+                        <Button className={classes.button}>
+                            <SendOutlined className = {classes.icon}></SendOutlined>
+                            SEND</Button>
                     </ButtonGroup>
                     <hr></hr>
                 </Grid>

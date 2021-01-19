@@ -29,7 +29,7 @@
 
 .side{
   grid-area: side;
-  background: #37474f;
+  background: #242c42;
   border-left: 1.3px solid gray;
   padding: 10px;
 }
