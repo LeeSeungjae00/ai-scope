@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideContent({ title, mainValue, subValue }) {
     const classes = useStyles();
-
+    console.log(subValue);
     return (
         <Grid item xs={12}>
             <Card className={classes.root}>
@@ -23,11 +23,7 @@ export default function SideContent({ title, mainValue, subValue }) {
                     <Typography variant="h4" component="h2">
                         <p>{mainValue}</p>
                     </Typography>
-                    <Typography variant="h11" className={classes.pos} color="textSecondary">
-                        {subValue.map(value => {
-                            return <div key = {Date.now()}>{value}</div>
-                        })}
-                    </Typography>
+                    {subValue.map(value => <Typography key = {value}>{value}</Typography>)}
                 </CardContent>
             </Card>
         </Grid>

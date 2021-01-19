@@ -24,7 +24,10 @@ export default function Side({onChangeFile, onFileButtonClick}) {
             <input ref={fileRef} hidden={true} id="file" type='file' onChange={onChangeFile}></input>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <ButtonGroup className={classes.buttonArray} variant="text" size="small" aria-label="text primary button group">
+                    <ButtonGroup 
+                        className={classes.buttonArray}
+                        variant="text" size="small" 
+                        aria-label="text primary button group">
                         <Button className={classes.button} onClick={(e) =>{
                             onFileButtonClick(e, fileRef);
                         }} >UPLOAD</Button>

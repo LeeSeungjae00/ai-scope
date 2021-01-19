@@ -1,6 +1,5 @@
 
 import { React, useState, useEffect} from 'react';
-// import { Typography, Grid, ButtonGroup, Button, CardContent, Card } from '@material-ui/core';
 
 import './App.css';
 import Hedaer from './Container/Header/Header';
@@ -9,7 +8,6 @@ import Side from './Container/Side/Side';
 
 
 function App() {
-
   const [file, setFile] = useState('');
   const [previewURL, setPreviewURL] = useState('');
   const [preview, setPreview] = useState(null);
@@ -38,7 +36,6 @@ function App() {
     e.preventDefault();
     fileRef.current.click();
   }
-
 
 
   return (
