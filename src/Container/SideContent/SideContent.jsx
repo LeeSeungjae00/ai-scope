@@ -40,7 +40,6 @@ export default function SideContent({ title, mainValue, subValue }) {
                 </CardContent>
                 <CardActions className={classes.actions}>
                     <IconButton
-                        
                         size="small"
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,

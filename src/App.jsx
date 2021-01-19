@@ -7,6 +7,7 @@ import Side from './Container/Side/Side';
 
 
 
+
 function App() {
   const [file, setFile] = useState('');
   const [previewURL, setPreviewURL] = useState('');
@@ -36,7 +37,6 @@ function App() {
     e.preventDefault();
     fileRef.current.click();
   }
-
 
 
   return (

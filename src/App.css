@@ -27,18 +27,13 @@
 }
 
 
-.side{
-  grid-area: side;
-  background: #242c42;
-  border-left: 1.3px solid gray;
-  padding: 10px;
-}
+
 
 hr{
   border-color: #90909096;
 }
 
-@media all and (max-width:767px) {
+@media all and (max-width:768px) {
   .App {
     display: flex;
     flex-direction: column;
@@ -46,22 +41,8 @@ hr{
     overflow-y: auto;
     overflow-x: hidden;
   }
-  .side-header{
-    order:1;
-    border-left: none;
-    border-bottom: 1.3px solid gray;
-  }
   .priveiw-rapping{
     flex: 1;
     order:2;
   }
-  .side{
-    order:3;
-    flex: 1;
-    background: #37474f;
-    border-left: none;
-    border-top: 1.3px solid gray;
-    
-  }
-  
 }

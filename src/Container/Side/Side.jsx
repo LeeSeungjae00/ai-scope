@@ -1,3 +1,4 @@
+import './Side.css'
 import { React, useRef } from 'react';
 import { Grid, ButtonGroup, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';

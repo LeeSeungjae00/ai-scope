@@ -1,0 +1,18 @@
+.side{
+    grid-area: side;
+    background: #242c42;
+    border-left: 1.3px solid gray;
+    padding: 10px;
+  }
+
+  @media all and (max-width:768px) {
+    .side{
+      order:3;
+      flex: 1;
+      background: #37474f;
+      border-left: none;
+      border-top: 1.3px solid gray;
+      
+    }
+    
+  }
