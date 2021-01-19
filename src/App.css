@@ -31,15 +31,7 @@
   grid-area: side;
   background: #37474f;
   border-left: 1.3px solid gray;
-}
-
-.side-header{
-  grid-area: side-header;
-  border-left: 1.3px solid gray;
-  color: aliceblue;
-  transition: width 300ms cubic-bezier(1, 0.03, 0.58, 1) 0ms;
-  background-color: #102027;
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+  padding: 10px;
 }
 
 hr{
