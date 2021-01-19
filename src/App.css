@@ -20,10 +20,17 @@
   min-height: 100%;
 } */
 
-
-.img_preview{
+/* full screen(non protect radio) */
+/* .img_preview{
   width: 100%;
   height: 100%;
+} */
+
+
+.img_preview {
+  width : 100%;
+  height: 100%;
+  object-fit:contain;
 }
 
 
