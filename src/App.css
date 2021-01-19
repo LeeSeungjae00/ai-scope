@@ -1,8 +1,11 @@
 .App {
   min-height: 100%;
   min-width: 100%;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: minmax(30px,auto) 1fr;
   grid-template-rows: minmax(30px,auto) 1fr;
+  -ms-grid-columns: 10fr 3fr;
   grid-template-columns: 10fr 3fr;
   grid-template-areas: 
     "img-preiveiw side-header"
@@ -12,13 +15,11 @@
 
 
 .priveiw-rapping{
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
   grid-area: img-preiveiw;
 }
-
-/* .img_preview{
-  min-width: auto;
-  min-height: 100%;
-} */
 
 /* full screen(non protect radio) */
 /* .img_preview{
@@ -30,7 +31,8 @@
 .img_preview {
   width : 100%;
   height: 100%;
-  object-fit:contain;
+  -o-object-fit :contain;
+  object-fit :contain;
 }
 
 
@@ -42,14 +44,24 @@ hr{
 
 @media all and (max-width:768px) {
   .App {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     overflow-y: auto;
     overflow-x: hidden;
   }
   .priveiw-rapping{
-    flex: 1;
-    order:2;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-ordinal-group:3;
+        -ms-flex-order:2;
+            order:2;
   }
 }
