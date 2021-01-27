@@ -1,5 +1,6 @@
 
-import { React, useState, useEffect} from 'react';
+import axios from 'axios';
+import { React, useState, useEffect } from 'react';
 
 import './App.css';
 import Hedaer from './Container/Header/Header';
@@ -12,6 +13,8 @@ function App() {
   const [file, setFile] = useState('');
   const [previewURL, setPreviewURL] = useState('');
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [resultData, setResultData] = useState([]);
 
   useEffect(() => {
     if (file !== '')
@@ -38,16 +41,44 @@ function App() {
     fileRef.current.click();
   }
 
+  async function handleSendClick(e) {
+    try {
+      if (file !== '') {
+        setLoading(true);
+        let form = new FormData();
+        form.append("result", file)
+        const response = await axios.post('/data', form, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log(response);
+        const { result, BGU, EGC, AGC } = response.data;
+
+        setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
+        setResultData([{BGU}, {EGC}, {AGC}]);
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error)
+    }
+  }
 
   return (
-    <div className = "App">
+    <div className="App">
       <div className="priveiw-rapping">
         {preview}
       </div>
-      <Hedaer title = "AI-assisted Endoscopic Diagnostic Device"></Hedaer>
-      <Side 
-        onChangeFile = {handleFileOnChange} 
-        onFileButtonClick = {handleFileButtonClick}>
+      <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
+      <Side
+        onChangeFile={handleFileOnChange}
+        onFileButtonClick={handleFileButtonClick}
+        onSendFile = {handleSendClick}
+        resultData = {resultData}
+        loading = {loading}
+        setLoading = {setLoading}
+        >
       </Side>
     </div>
   );
