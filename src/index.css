@@ -8,4 +8,5 @@ body {
     background-color: rgb(3, 3, 3);
     display: flex;
     overflow: hidden;
+    gap : 10px
 }

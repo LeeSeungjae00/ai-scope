@@ -26,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Side({ onChangeFile, onFileButtonClick, onSendFile, resultData, setLoading, loading }) {
+export default function Side({ onChangeFile, onFileButtonClick, onSendFile, resultData, loading }) {
     const fileRef = useRef();
     const classes = useStyles();
     const [sideContentArray, setSideContentArray] = useState([]);
 
     function madeSideContent(result) {
         if (result.length < 3) return [];
-        const resultArray = new Array;
+        const resultArray = [];
 
         result.sort((a, b) => Number.parseInt(b.value) - Number.parseInt(a.value));
 
@@ -47,7 +47,7 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, resu
             ]
         })
 
-        if (Object.keys(result[0][0]) == "EGC") {
+        if (Object.keys(result[0][0]) === "EGC") {
             const { T1a, T1b } = result[0].depth;
 
             resultArray.push({
@@ -67,7 +67,6 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, resu
 
     useEffect(() => {
         setSideContentArray(madeSideContent(resultData));
-        setLoading(false);
         return () => {
 
         }
