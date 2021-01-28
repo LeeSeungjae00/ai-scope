@@ -3,7 +3,7 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 
 import './App.css';
-import Hedaer from './Container/Header/Header';
+import Header from './Container/Header/Header';
 import Side from './Container/Side/Side';
 
 
@@ -70,7 +70,7 @@ function App() {
       <div className="priveiw-rapping">
         {preview}
       </div>
-      <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
+      <Header title="AI-assisted Endoscopic Diagnostic Device"></Header>
       <Side
         onChangeFile={handleFileOnChange}
         onFileButtonClick={handleFileButtonClick}
