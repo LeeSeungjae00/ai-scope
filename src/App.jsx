@@ -47,6 +47,7 @@ function App() {
     try {
       if (file !== '') {
         setLoading(true);
+        let test = await new Promise((res) => setTimeout(() => res("c"),1000));
         let form = new FormData();
         form.append("result", file)
         const response = await axios.post('/data', form, {
@@ -65,6 +66,8 @@ function App() {
         setSideContentArray(sideContentArray);
 
         setLoading(false);
+      }else{
+        alert('Please, Upload File');
       }
     } catch (error) {
 

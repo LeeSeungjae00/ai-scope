@@ -1,6 +1,6 @@
 import './Side.css'
-import { React, useRef} from 'react';
-import { Grid, ButtonGroup, Button ,CircularProgress} from '@material-ui/core';
+import { React, useRef } from 'react';
+import { Grid, ButtonGroup, Button, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SideContent from '../SideContent/SideContent';
 import { CloudUploadOutlined, SendOutlined } from '@material-ui/icons';
@@ -18,7 +18,15 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         marginRight: "3px",
         width: "0.7em"
-    }
+    },
+    buttonProgress: {
+        color: "#fff",
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: -12,
+        marginLeft: -12,
+    },
 }));
 
 
@@ -47,31 +55,24 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                         <Button className={classes.button} onClick={(e) => {
                             onSendFile(e);
                         }}>
-                            <SendOutlined className={classes.icon}></SendOutlined>
-                            SEND</Button>
+                            {
+                                loading ?
+                                    <><CircularProgress size={24} className={classes.buttonProgress} />&nbsp;</> :
+                                    <><SendOutlined className={classes.icon} ></SendOutlined>Send</>
+                            }
+                        </Button>
                     </ButtonGroup>
                     <hr></hr>
                 </Grid>
-                {loading ? <div className = "loading-rapping"><CircularProgress /></div> : 
+                {loading ? <div className="loading-rapping"><CircularProgress /></div> :
                     sideContentArray.map(sideContent =>
                         <SideContent
-                            key = {sideContent.title}
+                            key={sideContent.title}
                             title={sideContent.title}
                             mainValue={sideContent.mainValue}
                             subValue={sideContent.subValue}
                         ></SideContent>)
                 }
-                {/* <SideContent
-                    title = "Differential diganosis"
-                    mainValue = "EGC : 78.2%"
-                    subValue = {["AGC : 24.6%", "BGU : 13.0%"]}
-                ></SideContent>
-                <SideContent
-                    title = "Depth of invasion in EGC"
-                    mainValue = "T1b : 78.2%"
-                    subValue = {["T1a : 21.8%"]}
-                ></SideContent> */}
-                {/*  */}
             </Grid>
         </aside>
     )
