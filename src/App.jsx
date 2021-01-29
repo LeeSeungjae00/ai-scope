@@ -47,6 +47,7 @@ function App() {
     try {
       if (file !== '') {
         setLoading(true);
+        //testing code
         let test = await new Promise((res) => setTimeout(() => res("c"),1000));
         let form = new FormData();
         form.append("result", file)
@@ -72,7 +73,7 @@ function App() {
     } catch (error) {
 
       let fakeData = {
-        result : `/fakeResultImg.png`,
+        result : `/emswindow.png`,
         BGU : { value : 13 },
         EGC : {
           value : 78.2,

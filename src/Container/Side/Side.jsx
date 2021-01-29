@@ -1,6 +1,6 @@
 import './Side.css'
 import { React, useRef } from 'react';
-import { Grid, ButtonGroup, Button, CircularProgress } from '@material-ui/core';
+import { Grid, ButtonGroup, Button, CircularProgress , Fade } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SideContent from '../SideContent/SideContent';
 import { CloudUploadOutlined, SendOutlined } from '@material-ui/icons';
@@ -65,13 +65,19 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                     <hr></hr>
                 </Grid>
                 {loading ? <div className="loading-rapping"><CircularProgress /></div> :
-                    sideContentArray.map(sideContent =>
-                        <SideContent
-                            key={sideContent.title}
-                            title={sideContent.title}
-                            mainValue={sideContent.mainValue}
-                            subValue={sideContent.subValue}
-                        ></SideContent>)
+                <>
+                    <Fade timeout = {800} in={!loading}>
+                        <div className = "result-rapper">
+                       {sideContentArray.map(sideContent =>
+                           <SideContent
+                               key={sideContent.title}
+                               title={sideContent.title}
+                               mainValue={sideContent.mainValue}
+                               subValue={sideContent.subValue}
+                           ></SideContent>)}
+                        </div>
+                    </Fade>
+                </>
                 }
             </Grid>
         </aside>
