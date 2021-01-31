@@ -50,9 +50,9 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                         <Button className={classes.button} onClick={(e) => {
                             onFileButtonClick(e, fileRef);
                         }}>
-                            <CloudUploadOutlined className={classes.icon}></CloudUploadOutlined>
-                            UPLOAD</Button>
-                        <Button className={classes.button} onClick={(e) => {
+                            <CloudUploadOutlined className={classes.icon}></CloudUploadOutlined>UPLOAD
+                        </Button>
+                        <Button disabled = {loading} className={classes.button} onClick={(e) => {
                             onSendFile(e);
                         }}>
                             {
@@ -68,13 +68,13 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                 <>
                     <Fade timeout = {800} in={!loading}>
                         <div className = "result-rapper">
-                       {sideContentArray.map(sideContent =>
-                           <SideContent
-                               key={sideContent.title}
-                               title={sideContent.title}
-                               mainValue={sideContent.mainValue}
-                               subValue={sideContent.subValue}
-                           ></SideContent>)}
+                            {sideContentArray.map(sideContent =>
+                                <SideContent
+                                    key={sideContent.title}
+                                    title={sideContent.title}
+                                    mainValue={sideContent.mainValue}
+                                    subValue={sideContent.subValue}
+                                ></SideContent>)}
                         </div>
                     </Fade>
                 </>

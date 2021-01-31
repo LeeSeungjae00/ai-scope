@@ -15,7 +15,6 @@ function App() {
   const [previewURL, setPreviewURL] = useState('');
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [resultData, setResultData] = useState([]);
   const [sideContentArray, setSideContentArray] = useState([]);
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function App() {
       if (file !== '') {
         setLoading(true);
         //testing code
-        let test = await new Promise((res) => setTimeout(() => res("c"),1000));
+        let loadTest = await new Promise((res) => setTimeout(() => res("timeOut"),1000));
         let form = new FormData();
         form.append("result", file)
         const response = await axios.post('/data', form, {
@@ -73,7 +72,7 @@ function App() {
     } catch (error) {
 
       let fakeData = {
-        result : `/emswindow.png`,
+        result : `/fakeResultImg.png`,
         BGU : { value : 13 },
         EGC : {
           value : 78.2,
