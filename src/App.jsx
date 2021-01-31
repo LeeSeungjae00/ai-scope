@@ -3,7 +3,7 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 
 import './App.css';
-import Header from './Container/Header/Header';
+import Hedaer from './Container/Header/Header';
 import Side from './Container/Side/Side';
 import madeSideContent from './Module/madeSideContent'
 
@@ -103,7 +103,7 @@ function App() {
       <div className="priveiw-rapping">
         {preview}
       </div>
-      <Header title="AI-assisted Endoscopic Diagnostic Device"></Header>
+      <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
       <Side
         onChangeFile={handleFileOnChange}
         onFileButtonClick={handleFileButtonClick}
