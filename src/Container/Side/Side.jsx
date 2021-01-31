@@ -1,5 +1,5 @@
 import './Side.css'
-import { React, useRef, useEffect, useState } from 'react';
+import { React, useRef} from 'react';
 import { Grid, ButtonGroup, Button ,CircularProgress} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SideContent from '../SideContent/SideContent';
@@ -26,51 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Side({ onChangeFile, onFileButtonClick, onSendFile, resultData, loading }) {
+export default function Side({ onChangeFile, onFileButtonClick, onSendFile, sideContentArray, loading }) {
     const fileRef = useRef();
-    const classes = useStyles();
-    const [sideContentArray, setSideContentArray] = useState([]);
-
-    function madeSideContent(result) {
-        if (result.length < 3) return [];
-        const resultArray = [];
-
-        result.sort((a, b) => Number.parseInt(b.value) - Number.parseInt(a.value));
-
-
-        resultArray.push({
-            title: "Differential diganosis",
-            mainValue: `${Object.keys(result[0][0])} : ${result[0].value}%`,
-            subValue: [
-                `${Object.keys(result[1][0])} : ${result[1].value}%`,
-                `${Object.keys(result[2][0])} : ${result[2].value}%`
-            ]
-        })
-
-        if (Object.keys(result[0][0]) === "EGC") {
-            const { T1a, T1b } = result[0].depth;
-
-            resultArray.push({
-                title: "Depth of invasion in EGC",
-                mainValue: `${T1a > T1b ?
-                    "T1a : " + T1a.value + "%" :
-                    "T1b : " + T1b.value + "%"}`,
-                subValue: [`${T1a < T1b ?
-                    "T1a : " + T1a.value + "%" :
-                    "T1b : " + T1b.value + "%"}`]
-            })
-        }
-        return resultArray
-    }
-
-
-
-    useEffect(() => {
-        setSideContentArray(madeSideContent(resultData));
-        return () => {
-
-        }
-    }, [resultData])
+    const classes = useStyles();;
 
     return (
         <aside className="side">
@@ -97,6 +55,7 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, resu
                 {loading ? <div className = "loading-rapping"><CircularProgress /></div> : 
                     sideContentArray.map(sideContent =>
                         <SideContent
+                            key = {sideContent.title}
                             title={sideContent.title}
                             mainValue={sideContent.mainValue}
                             subValue={sideContent.subValue}

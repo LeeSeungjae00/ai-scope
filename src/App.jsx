@@ -5,6 +5,7 @@ import { React, useState, useEffect } from 'react';
 import './App.css';
 import Hedaer from './Container/Header/Header';
 import Side from './Container/Side/Side';
+import madeSideContent from './Module/madeSideContent'
 
 
 
@@ -14,7 +15,8 @@ function App() {
   const [previewURL, setPreviewURL] = useState('');
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [resultData, setResultData] = useState([]);
+  // const [resultData, setResultData] = useState([]);
+  const [sideContentArray, setSideContentArray] = useState([]);
 
   useEffect(() => {
     if (file !== '')
@@ -56,12 +58,40 @@ function App() {
         const { result, BGU, EGC, AGC } = response.data;
 
         setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
-        setResultData([{BGU}, {EGC}, {AGC}]);
+
+        sideContentArray.splice(0);
+
+        sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
+        setSideContentArray(sideContentArray);
+
         setLoading(false);
       }
     } catch (error) {
+
+      let fakeData = {
+        result : `/fakeResultImg.png`,
+        BGU : { value : 13 },
+        EGC : {
+          value : 78.2,
+          depth : {
+            T1a : 21.8,
+            T1b : 78.2
+          }
+        },
+        AGC : { value : 24.6 }
+      }
+
+      const {result, BGU, EGC, AGC} = fakeData;
+
+      setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
+
+      sideContentArray.splice(0);
+
+      sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
+      setSideContentArray(sideContentArray);
+      console.log(sideContentArray);
+
       setLoading(false);
-      console.log(error)
     }
   }
 
@@ -75,7 +105,7 @@ function App() {
         onChangeFile={handleFileOnChange}
         onFileButtonClick={handleFileButtonClick}
         onSendFile = {handleSendClick}
-        resultData = {resultData}
+        sideContentArray = {sideContentArray}
         loading = {loading}
         >
       </Side>
