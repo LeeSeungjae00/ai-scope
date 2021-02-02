@@ -34,7 +34,7 @@
   max-width: 100%;
   flex-basis: 100%;
   margin: 10px;
-  justify-content: row;
-  flex-wrap: nowrap;
-  gap : 10px
+  display: flex;
+  gap : 10px;
+  flex-direction: column;
 }
