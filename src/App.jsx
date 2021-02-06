@@ -15,7 +15,6 @@ function App() {
   const [previewURL, setPreviewURL] = useState('');
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [resultData, setResultData] = useState([]);
   const [sideContentArray, setSideContentArray] = useState([]);
 
   useEffect(() => {
@@ -47,6 +46,8 @@ function App() {
     try {
       if (file !== '') {
         setLoading(true);
+        //testing code
+        let loadTest = await new Promise((res) => setTimeout(() => res("timeOut"),1000));
         let form = new FormData();
         form.append("result", file)
         const response = await axios.post('/data', form, {
@@ -65,6 +66,8 @@ function App() {
         setSideContentArray(sideContentArray);
 
         setLoading(false);
+      }else{
+        alert('Please, Upload File');
       }
     } catch (error) {
 

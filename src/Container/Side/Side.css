@@ -29,3 +29,12 @@
   display: flex;
   justify-content: center;
 }
+
+.result-rapper{
+  max-width: 100%;
+  flex-basis: 100%;
+  margin: 10px;
+  display: flex;
+  gap : 10px;
+  flex-direction: column;
+}
