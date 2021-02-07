@@ -1,9 +1,9 @@
 import './Side.css'
 import { React, useRef } from 'react';
-import { Grid, ButtonGroup, Button, CircularProgress , Fade } from '@material-ui/core';
+import { Grid, ButtonGroup, Button, CircularProgress, Fade } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SideContent from '../SideContent/SideContent';
-import { CloudUploadOutlined, SendOutlined } from '@material-ui/icons';
+import { SendOutlined, FolderOpenOutlined } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,13 +21,34 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonProgress: {
         color: "#fff",
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        marginTop: -12,
+        marginTop: -5,
         marginLeft: -12,
     },
+    mainProgress: {
+        alignSelf: "center"
+    },
+    root: {
+        width: 'fit-content',
+        border: `1px solid ${theme.palette.divider}`,
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.secondary,
+        '& svg': {
+            margin: theme.spacing(1.5),
+        },
+        '& hr': {
+            margin: theme.spacing(0, 0.5),
+        }
+    },
+    radioGroup: {
+        justifyContent: "center",
+        color: "white"
+    },
+    radioLableRoot: {
+        backgroundColor: ""
+    }
 }));
+
 
 
 
@@ -36,50 +57,82 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Side({ onChangeFile, onFileButtonClick, onSendFile, sideContentArray, loading }) {
     const fileRef = useRef();
-    const classes = useStyles();;
+    const classes = useStyles();
+
 
     return (
         <aside className="side">
             <input ref={fileRef} hidden={true} id="file" type='file' onChange={onChangeFile}></input>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <ButtonGroup
-                        className={classes.buttonArray}
-                        variant="text" size="small"
-                        aria-label="text primary button group">
-                        <Button className={classes.button} onClick={(e) => {
-                            onFileButtonClick(e, fileRef);
-                        }}>
-                            <CloudUploadOutlined className={classes.icon}></CloudUploadOutlined>UPLOAD
-                        </Button>
-                        <Button disabled = {loading} className={classes.button} onClick={(e) => {
-                            onSendFile(e);
-                        }}>
-                            {
-                                loading ?
-                                    <><CircularProgress size={24} className={classes.buttonProgress} />&nbsp;</> :
+                            <ButtonGroup
+                                className={classes.buttonArray}
+                                variant="text" size="small"
+                                aria-label="text primary button group">
+                                <Button className={classes.button} onClick={(e) => {
+                                    onFileButtonClick(e, fileRef);
+                                }}>
+                                    <FolderOpenOutlined className={classes.icon}></FolderOpenOutlined>File Select
+                                </Button>
+                                <Button className={classes.button} onClick={(e) => {
+                                    onSendFile(e);
+                                }}>
                                     <><SendOutlined className={classes.icon} ></SendOutlined>Send</>
-                            }
-                        </Button>
-                    </ButtonGroup>
+                                </Button>
+                            </ButtonGroup>
                     <hr></hr>
                 </Grid>
-                {loading ? <div className="loading-rapping"><CircularProgress /></div> :
-                <>
-                    <Fade timeout = {800} in={!loading}>
-                        <div className = "result-rapper">
-                            {sideContentArray.map(sideContent =>
+                <div className="loading-rapping">
+                    <div className="result-rapper">
+                        <SideContent
+                            key={"Differential diganosis"}
+                            title={"Differential diganosis"}
+                            mainValue={
+                                sideContentArray[0]?.mainValue ?
+                                    sideContentArray[0].mainValue :
+                                    <>&nbsp;</>}
+                            subValue={
+                                sideContentArray[0]?.subValue ?
+                                    sideContentArray[0].subValue :
+                                    []}
+                        ></SideContent>
+                        <Fade in={sideContentArray.length === 2}>
+                            <div>
                                 <SideContent
-                                    key={sideContent.title}
-                                    title={sideContent.title}
-                                    mainValue={sideContent.mainValue}
-                                    subValue={sideContent.subValue}
-                                ></SideContent>)}
-                        </div>
-                    </Fade>
-                </>
-                }
+                                    key={"Depth of invasion in EGC"}
+                                    title={"Depth of invasion in EGC"}
+                                    mainValue={
+                                        sideContentArray[1]?.mainValue ?
+                                            sideContentArray[1].mainValue :
+                                            <>&nbsp;</>}
+                                    subValue={
+                                        sideContentArray[1]?.subValue ?
+                                            sideContentArray[1].subValue :
+                                            []}
+                                ></SideContent>
+                            </div>
+                        </Fade>
+                    </div>
+
+                </div>
+                <hr></hr>
+
+                {/* <Grid item xs={12}>
+                <Grid container alignItems="center" className={classes.root}>
+        <FormatAlignLeftIcon />
+        <FormatAlignCenterIcon />
+        <FormatAlignRightIcon />
+        <Divider orientation="vertical" flexItem />
+        <FormatBoldIcon />
+        <FormatItalicIcon />
+        <FormatUnderlinedIcon />
+      </Grid>
+                    <button onClick = {(e) => {
+                    DrawRef.current.getContext("2d").clearRect(0, 0, DrawRef.current.width,DrawRef.current.height);
+                }}></button></Grid> */}
             </Grid>
+
+            <hr></hr>
         </aside>
     )
 }

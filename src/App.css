@@ -9,7 +9,7 @@
   grid-template-columns: 10fr 3fr;
   grid-template-areas: 
     "img-preiveiw side-header"
-    "img-preiveiw side"
+    "img-preiveiw side";
 }
 
 
@@ -64,4 +64,27 @@ hr{
         -ms-flex-order:2;
             order:2;
   }
+}
+
+.canvers{
+  position: absolute;
+  top:0;
+  left : 0;
+}
+
+.bothRapper{
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 1fr;
+}
+
+.screenblru{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #191919c4;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
