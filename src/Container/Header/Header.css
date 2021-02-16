@@ -2,7 +2,7 @@
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: side-header;
-  border-left: 1.3px solid gray;
+  border-bottom: 1.3px solid gray;
   color: aliceblue;
   -webkit-transition: width 300ms cubic-bezier(1, 0.03, 0.58, 1) 0ms;
   -o-transition: width 300ms cubic-bezier(1, 0.03, 0.58, 1) 0ms;
@@ -12,7 +12,7 @@
           box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
 }
 
-@media all and (max-width:768px) {
+@media all and (max-width:966px) {
 
   .side-header{
     -webkit-box-ordinal-group:2;

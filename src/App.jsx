@@ -68,7 +68,7 @@ function App() {
         //testing code
         let form = new FormData();
         form.append("image", file)
-        const tome = await new Promise((res) => {setTimeout(()=>res("dd"),1000)})
+        // const tome = await new Promise((res) => {setTimeout(()=>res("dd"),1000)})
         const response = await axios.post('/data', form);
         console.log(response);
         const { result, BGU, EGC, AGC } = response.data;
@@ -120,7 +120,7 @@ function App() {
     <Fade in = {loading}><div className = "screenblru"><CircularProgress size={90} className = {classes.mainProgress}/></div></Fade>
     <div className="App">
       <div className="priveiw-rapping">
-         {preview}
+        {preview}
       </div>
       {/* <Draw canvasRef ={canvasRef} sizeRef = {divRef}></Draw> */}
       <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>

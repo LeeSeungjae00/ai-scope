@@ -1,6 +1,8 @@
 body {
     margin: 0;
+    height: 100vh;
 }
+
 
 #root{
     height: 100vh;
@@ -9,4 +11,15 @@ body {
     display: flex;
     overflow: hidden;
     gap : 10px
+}
+
+@media all and (max-width:966px) {
+    #root{ 
+        height: fit-content;
+        min-height: 100%;
+    }  
+    html{
+        overflow-y: auto;
+        min-height: 100%;
+    }  
 }

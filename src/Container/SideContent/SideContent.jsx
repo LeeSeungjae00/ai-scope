@@ -3,6 +3,10 @@ import { Typography, Grid, CardContent, Card, CardActions, IconButton, Collapse 
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMore } from '@material-ui/icons';
 import clsx from 'clsx';
+import {CircularProgressbar , buildStyles} from 'react-circular-progressbar'
+import AnimatedProgressProvider from '../AnimatedProgressProvider'
+import { easeQuadInOut } from "d3-ease";
+import "react-circular-progressbar/dist/styles.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    actions : {
-        float : 'right'
+    actions: {
+        float: 'right'
     }
 }));
 
@@ -26,18 +30,82 @@ export default function SideContent({ title, mainValue, subValue }) {
         e.preventDefault();
         setExpanded(!expanded);
     };
-
     return (
         <Grid item xs={12}>
             <Card className={classes.root}>
                 <CardContent className={classes.content}>
-                    <Typography variant="h6" style = {{color : "white"}} gutterBottom>
+                    
+                    <Typography variant="h6" style={{ color: "white" }} gutterBottom>
                         {title}
                     </Typography>
-                    <Typography  variant="h5">
-                        {mainValue}
-                    </Typography>
+                    { mainValue.length > 3 && 
+                        <div style={{ width: "100%", display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Typography variant="h5">
+                                {mainValue.split(' : ')[0]}
+
+                            </Typography>
+                            <div style={{ width: 150 }}>
+                                <AnimatedProgressProvider
+                                    valueStart={0}
+                                    valueEnd={mainValue.split(' : ')[1].split('%')[0] * 1}
+                                    duration={1}
+                                    easingFunction={easeQuadInOut}
+                                >
+                                    {(value) => {
+                                        return (
+                                            <CircularProgressbar
+                                                value={value}
+                                                text={`${value.toFixed(1)}%`}
+                                                strokeWidth={3}
+                                                styles={buildStyles({
+                                                    textColor: "rgb(207 213 255)",
+                                                    pathColor: "rgb(207 213 255)",
+                                                    trailColor: "gray"
+                                                })}
+                                            />
+                                        );
+                                    }}
+                                </AnimatedProgressProvider>
+
+                            </div>
+                        </div>
+}
                 </CardContent>
+                <Collapse in={expanded}>
+                    <div style = {{width : '100%', padding : '0px 16px 0px 16px'}}>
+                        {/* {subValue.map(value => <Typography variant="body2" key={value}>{value}</Typography>)} */}
+                        {subValue.map(value => <div style={{ marginBottom : 10, width: "100%", display: 'flex', justifyContent: 'flex-start', gap : 20, alignItems: 'center' }}>
+                            <Typography variant="body2" key={value}>
+                                {value.split(' : ')[0]}
+
+                            </Typography>
+                            <div style={{ width: 60 }}>
+                                <AnimatedProgressProvider
+                                    valueStart={0}
+                                    valueEnd={value.split(' : ')[1].split('%')[0] * 1}
+                                    duration={1}
+                                    easingFunction={easeQuadInOut}
+                                >
+                                    {(val) => {
+                                        return (
+                                            <CircularProgressbar
+                                                value={val}
+                                                text={`${val.toFixed(1)}%`}
+                                                strokeWidth={3}
+                                                styles={buildStyles({
+                                                    textColor: "rgb(207 213 255)",
+                                                    pathColor: "rgb(207 213 255)",
+                                                    trailColor: "gray"
+                                                })}
+                                            />
+                                        );
+                                    }}
+                                </AnimatedProgressProvider>
+
+                            </div>
+                        </div>)}
+                    </div>
+                </Collapse>
                 <CardActions className={classes.actions}>
                     <IconButton
                         size="small"
@@ -50,11 +118,7 @@ export default function SideContent({ title, mainValue, subValue }) {
                         <ExpandMore></ExpandMore>
                     </IconButton>
                 </CardActions>
-                <Collapse in={expanded}>
-                    <CardContent>
-                        {subValue.map(value => <Typography variant="body2" key={value}>{value}</Typography>)}
-                    </CardContent>
-                </Collapse>
+                
             </Card>
         </Grid>
     )

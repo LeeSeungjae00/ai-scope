@@ -1,6 +1,6 @@
 import './Side.css'
 import { React, useRef } from 'react';
-import { Grid, ButtonGroup, Button, CircularProgress, Fade } from '@material-ui/core';
+import { Grid, ButtonGroup, Button, Fade } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SideContent from '../SideContent/SideContent';
 import { SendOutlined, FolderOpenOutlined } from '@material-ui/icons';
@@ -85,8 +85,8 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                 <div className="loading-rapping">
                     <div className="result-rapper">
                         <SideContent
-                            key={"Differential diganosis"}
-                            title={"Differential diganosis"}
+                            key={"Differential diagnosis"}
+                            title={"Differential diagnosis"}
                             mainValue={
                                 sideContentArray[0]?.mainValue ?
                                     sideContentArray[0].mainValue :

@@ -4,7 +4,7 @@ import './Header.css'
 export default function Hedaer({title}) {
     return (
         <header className="side-header">
-            <Typography align="center" variant="overline" display="block">
+            <Typography style = {{fontSize : "0.8rem"}} align="center" variant="overline" display="block">
                 {title}
             </Typography>
         </header>
