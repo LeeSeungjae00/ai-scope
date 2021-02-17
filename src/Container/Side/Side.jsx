@@ -115,23 +115,7 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                     </div>
 
                 </div>
-                <hr></hr>
-
-                {/* <Grid item xs={12}>
-                <Grid container alignItems="center" className={classes.root}>
-        <FormatAlignLeftIcon />
-        <FormatAlignCenterIcon />
-        <FormatAlignRightIcon />
-        <Divider orientation="vertical" flexItem />
-        <FormatBoldIcon />
-        <FormatItalicIcon />
-        <FormatUnderlinedIcon />
-      </Grid>
-                    <button onClick = {(e) => {
-                    DrawRef.current.getContext("2d").clearRect(0, 0, DrawRef.current.width,DrawRef.current.height);
-                }}></button></Grid> */}
             </Grid>
-
             <hr></hr>
         </aside>
     )

@@ -9,7 +9,7 @@
   overflow-x: hidden;
 }
 
-@media all and (max-width:966px) {
+@media all and (max-width:1024px) {
   .side{
     -webkit-box-ordinal-group:4;
         -ms-flex-order:3;

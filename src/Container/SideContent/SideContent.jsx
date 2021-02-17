@@ -72,8 +72,7 @@ export default function SideContent({ title, mainValue, subValue }) {
 }
                 </CardContent>
                 <Collapse in={expanded}>
-                    <CardContent className={classes.content}>
-                        {/* {subValue.map(value => <Typography variant="body2" key={value}>{value}</Typography>)} */}
+                    <CardContent className={classes.content} style = {{paddingBottom : 0}}>
                         {subValue.map(value => <div style={{ marginBottom : 10, width: "100%", display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                             <Typography variant="body2" key={value}>
                                 {value.split(' : ')[0]}

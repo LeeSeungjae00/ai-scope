@@ -3,7 +3,6 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 
 import './App.css';
-// import Draw from './Container/Draw';
 import Hedaer from './Container/Header/Header';
 import Side from './Container/Side/Side';
 import madeSideContent from './Module/madeSideContent'
@@ -28,7 +27,6 @@ function App() {
   useEffect(() => {
     if (file !== ''){
       setPreview(<img alt="./alt.jpeg" className='img_preview' src={previewURL}></img>);
-      // setAfterPreview(<img alt="./alt.jpeg" className='img_preview' src={afterPreviewURL}></img>);
     }
     return () => {
     }
@@ -49,8 +47,6 @@ function App() {
     reader.onloadend = (e) => {
       setFile(file);
       setPreviewURL(reader.result);
-      // setAfterPreview(<div style = {{width : "100%"}}></div>)
-      // setAfterPreviewURL(reader.result);
     }
     if (file)
       reader.readAsDataURL(file);
@@ -65,7 +61,6 @@ function App() {
     try {
       if (file !== '') {
         setLoading(true);
-        //testing code
         let form = new FormData();
         form.append("image", file)
         // const tome = await new Promise((res) => {setTimeout(()=>res("dd"),1000)})
@@ -88,28 +83,28 @@ function App() {
       }
     } catch (error) {
 
-      let fakeData = {
-        result : `/fakeResultImg.png`,
-        BGU : { value : 13 },
-        EGC : {
-          value : 78.2,
-          depth : {
-            T1a : 21.8,
-            T1b : 78.2
-          }
-        },
-        AGC : { value : 24.6 }
-      }
+      // let fakeData = {
+      //   result : `/fakeResultImg.png`,
+      //   BGU : { value : 13 },
+      //   EGC : {
+      //     value : 78.2,
+      //     depth : {
+      //       T1a : 21.8,
+      //       T1b : 78.2
+      //     }
+      //   },
+      //   AGC : { value : 24.6 }
+      // }
 
-      const {result, BGU, EGC, AGC} = fakeData;
+      // const {result, BGU, EGC, AGC} = fakeData;
 
-      setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
+      // setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
 
-      sideContentArray.splice(0);
+      // sideContentArray.splice(0);
 
-      sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
-      setSideContentArray(sideContentArray);
-      console.log(sideContentArray);
+      // sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
+      // setSideContentArray(sideContentArray);
+      // console.log(sideContentArray);
 
       setLoading(false);
     }
@@ -122,7 +117,6 @@ function App() {
       <div className="priveiw-rapping">
         {preview}
       </div>
-      {/* <Draw canvasRef ={canvasRef} sizeRef = {divRef}></Draw> */}
       <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
       <Side
         onChangeFile={handleFileOnChange}

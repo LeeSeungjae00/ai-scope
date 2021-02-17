@@ -46,7 +46,7 @@ hr{
   border-color: #90909096;
 }
 
-@media all and (max-width:966px) {
+@media all and (max-width:1024px) {
   .App {
     display: -webkit-box;
     display: -ms-flexbox;
