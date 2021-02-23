@@ -55,14 +55,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Side({ onChangeFile, onFileButtonClick, onSendFile, sideContentArray, loading }) {
+export default function Side({ onChangeFile, onFileButtonClick, onSendFile, sideContentArray, fileProps }) {
     const fileRef = useRef();
     const classes = useStyles();
 
 
     return (
         <aside className="side">
-            <input ref={fileRef} hidden={true} id="file" type='file' onChange={onChangeFile}></input>
+            <input {...fileProps} ref={fileRef} hidden={true} id="file" type='file' onChange={onChangeFile}></input>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                             <ButtonGroup
@@ -72,7 +72,7 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                                 <Button className={classes.button} onClick={(e) => {
                                     onFileButtonClick(e, fileRef);
                                 }}>
-                                    <FolderOpenOutlined className={classes.icon}></FolderOpenOutlined>File Select
+                                    <FolderOpenOutlined className={classes.icon}></FolderOpenOutlined>Select File
                                 </Button>
                                 <Button className={classes.button} onClick={(e) => {
                                     onSendFile(e);

@@ -1,7 +1,6 @@
 
 import axios from 'axios';
-import { React, useState, useEffect } from 'react';
-
+import { React, useState, useEffect , useCallback} from 'react';
 import './App.css';
 // import Draw from './Container/Draw';
 import Hedaer from './Container/Header/Header';
@@ -9,6 +8,8 @@ import Side from './Container/Side/Side';
 import madeSideContent from './Module/madeSideContent'
 import {CircularProgress , Fade} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import {useDropzone} from 'react-dropzone'
+import { FolderOpenOutlined ,MouseOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   mainProgress: {
@@ -24,6 +25,29 @@ function App() {
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [sideContentArray, setSideContentArray] = useState([]);
+  const onDrop = useCallback(acceptedFiles => {
+    console.log(acceptedFiles);
+    sideContentArray.splice(0);
+
+    setSideContentArray(sideContentArray);
+
+    let file = acceptedFiles[0];
+    if(file?.type.split('/')[0] !== "image"){
+      alert('Please upload image File.');
+      return;
+    }
+    let reader = new FileReader();
+
+    reader.onloadend = (e) => {
+      setFile(file);
+      setPreviewURL(reader.result);
+      // setAfterPreview(<div style = {{width : "100%"}}></div>)
+      // setAfterPreviewURL(reader.result);
+    }
+    if (file)
+      reader.readAsDataURL(file);
+  }, [])
+  const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   useEffect(() => {
     if (file !== ''){
@@ -119,8 +143,16 @@ function App() {
     <>
     <Fade in = {loading}><div className = "screenblru"><CircularProgress size={90} className = {classes.mainProgress}/></div></Fade>
     <div className="App">
-      <div className="priveiw-rapping">
-        {preview}
+      <div {...getRootProps()} className="priveiw-rapping">
+        {(preview === null) ? 
+        <div className = 'non-priveiw'>
+          '
+          <FolderOpenOutlined />
+          <span>
+          SELECT FILE'
+          </span>&nbsp;&nbsp;or &nbsp; <MouseOutlined /> Drag and Drop the file here
+          </div>
+         :preview}
       </div>
       {/* <Draw canvasRef ={canvasRef} sizeRef = {divRef}></Draw> */}
       <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
@@ -129,8 +161,7 @@ function App() {
         onFileButtonClick={handleFileButtonClick}
         onSendFile = {handleSendClick}
         sideContentArray = {sideContentArray}
-        loading = {loading}
-
+        fileProps = {getInputProps}
         >
       </Side>
     </div>
