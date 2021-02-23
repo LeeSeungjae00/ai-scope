@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { React, useState, useEffect , useCallback} from 'react';
 import './App.css';
-// import Draw from './Container/Draw';
 import Hedaer from './Container/Header/Header';
 import Side from './Container/Side/Side';
 import madeSideContent from './Module/madeSideContent'
@@ -52,7 +51,6 @@ function App() {
   useEffect(() => {
     if (file !== ''){
       setPreview(<img alt="./alt.jpeg" className='img_preview' src={previewURL}></img>);
-      // setAfterPreview(<img alt="./alt.jpeg" className='img_preview' src={afterPreviewURL}></img>);
     }
     return () => {
     }
@@ -73,8 +71,6 @@ function App() {
     reader.onloadend = (e) => {
       setFile(file);
       setPreviewURL(reader.result);
-      // setAfterPreview(<div style = {{width : "100%"}}></div>)
-      // setAfterPreviewURL(reader.result);
     }
     if (file)
       reader.readAsDataURL(file);
@@ -89,7 +85,6 @@ function App() {
     try {
       if (file !== '') {
         setLoading(true);
-        //testing code
         let form = new FormData();
         form.append("image", file)
         // const tome = await new Promise((res) => {setTimeout(()=>res("dd"),1000)})
@@ -154,7 +149,6 @@ function App() {
           </div>
          :preview}
       </div>
-      {/* <Draw canvasRef ={canvasRef} sizeRef = {divRef}></Draw> */}
       <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
       <Side
         onChangeFile={handleFileOnChange}

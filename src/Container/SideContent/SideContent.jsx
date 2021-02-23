@@ -72,9 +72,8 @@ export default function SideContent({ title, mainValue, subValue }) {
 }
                 </CardContent>
                 <Collapse in={expanded}>
-                    <div style = {{width : '100%', padding : '0px 16px 0px 16px'}}>
-                        {/* {subValue.map(value => <Typography variant="body2" key={value}>{value}</Typography>)} */}
-                        {subValue.map(value => <div style={{ marginBottom : 10, width: "100%", display: 'flex', justifyContent: 'flex-start', gap : 20, alignItems: 'center' }}>
+                    <CardContent className={classes.content} style = {{paddingBottom : 0}}>
+                        {subValue.map(value => <div style={{ marginBottom : 10, width: "100%", display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                             <Typography variant="body2" key={value}>
                                 {value.split(' : ')[0]}
 
@@ -104,7 +103,7 @@ export default function SideContent({ title, mainValue, subValue }) {
 
                             </div>
                         </div>)}
-                    </div>
+                    </CardContent>
                 </Collapse>
                 <CardActions className={classes.actions}>
                     <IconButton
