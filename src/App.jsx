@@ -107,28 +107,28 @@ function App() {
       }
     } catch (error) {
 
-      let fakeData = {
-        result : `/.png`,
-        BGU : { value : 13 },
-        EGC : {
-          value : 78.2,
-          depth : {
-            T1a : 21.8,
-            T1b : 78.2
-          }
-        },
-        AGC : { value : 24.6 }
-      }
+      // let fakeData = {
+      //   result : `/fakeResultImg.png`,
+      //   BGU : { value : 13 },
+      //   EGC : {
+      //     value : 78.2,
+      //     depth : {
+      //       T1a : 21.8,
+      //       T1b : 78.2
+      //     }
+      //   },
+      //   AGC : { value : 24.6 }
+      // }
 
-      const {result, BGU, EGC, AGC} = fakeData;
+      // const {result, BGU, EGC, AGC} = fakeData;
 
-      setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
+      // setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
 
-      sideContentArray.splice(0);
+      // sideContentArray.splice(0);
 
-      sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
-      setSideContentArray(sideContentArray);
-      console.log(sideContentArray);
+      // sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
+      // setSideContentArray(sideContentArray);
+      // console.log(sideContentArray);
 
       setLoading(false);
     }
