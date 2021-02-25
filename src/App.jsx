@@ -5,7 +5,7 @@ import './App.css';
 import Hedaer from './Container/Header/Header';
 import Side from './Container/Side/Side';
 import madeSideContent from './Module/madeSideContent'
-import {CircularProgress , Fade} from '@material-ui/core';
+import {CircularProgress , Fade , Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {useDropzone} from 'react-dropzone'
 import { FolderOpenOutlined ,MouseOutlined } from '@material-ui/icons';
@@ -140,12 +140,12 @@ function App() {
     <div className="App">
       <div {...getRootProps()} className="priveiw-rapping">
         {(preview === null) ? 
-        <div className = 'non-priveiw'>
-          '
+          <div className = 'non-priveiw'>
+          <Typography style = {{fontSize : "1.3rem"}}>'</Typography>
           <FolderOpenOutlined />
-          <span>
-          SELECT FILE'
-          </span>&nbsp;&nbsp;or &nbsp; <MouseOutlined /> Drag and Drop the file here
+          <Typography style = {{fontSize : "1.3rem"}}>SELECT FILE' or</Typography>
+          <MouseOutlined />
+          <Typography style = {{fontSize : "1.3rem"}}>Drag and Drop the file here</Typography>
           </div>
          :preview}
       </div>

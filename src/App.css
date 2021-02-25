@@ -10,6 +10,7 @@
   grid-template-areas: 
     "side-header side-header"
     "img-preiveiw side";
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 
