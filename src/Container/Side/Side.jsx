@@ -63,7 +63,7 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
     return (
         <aside className="side">
             <input {...fileProps} ref={fileRef} hidden={true} id="file" type='file' onChange={onChangeFile}></input>
-            <Grid container spacing={3}>
+            <Grid container spacing={1}>
                 <Grid item xs={12}>
                             <ButtonGroup
                                 className={classes.buttonArray}
@@ -77,7 +77,7 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                                 <Button className={classes.button} onClick={(e) => {
                                     onSendFile(e);
                                 }}>
-                                    <><SendOutlined className={classes.icon} ></SendOutlined>Send</>
+                                    <><SendOutlined className={classes.icon} ></SendOutlined>Result</>
                                 </Button>
                             </ButtonGroup>
                     <hr></hr>
@@ -99,8 +99,8 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
                         <Fade in={sideContentArray.length === 2}>
                             <div>
                                 <SideContent
-                                    key={"Depth of invasion in EGC"}
-                                    title={"Depth of invasion in EGC"}
+                                    key={"Depth of invasion in Early gastric cancer"}
+                                    title={"Depth of invasion in Early gastric cancer"}
                                     mainValue={
                                         sideContentArray[1]?.mainValue ?
                                             sideContentArray[1].mainValue :
@@ -116,7 +116,6 @@ export default function Side({ onChangeFile, onFileButtonClick, onSendFile, side
 
                 </div>
             </Grid>
-            <hr></hr>
         </aside>
     )
 }

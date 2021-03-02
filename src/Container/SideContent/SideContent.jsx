@@ -39,12 +39,12 @@ export default function SideContent({ title, mainValue, subValue }) {
                         {title}
                     </Typography>
                     { mainValue.length > 3 && 
-                        <div style={{ width: "100%", display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                            <Typography variant="h5">
+                        <div style={{ width: "100%", display: 'flex',flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', gap : 10 }}>
+                            <Typography variant="h5" style = {{alignSelf : 'flex-start'}}>
                                 {mainValue.split(' : ')[0]}
 
                             </Typography>
-                            <div style={{ width: 150 }}>
+                            <div style={{ width: 120 }}>
                                 <AnimatedProgressProvider
                                     valueStart={0}
                                     valueEnd={mainValue.split(' : ')[1].split('%')[0] * 1}
@@ -73,7 +73,7 @@ export default function SideContent({ title, mainValue, subValue }) {
                 </CardContent>
                 <Collapse in={expanded}>
                     <CardContent className={classes.content} style = {{paddingBottom : 0}}>
-                        {subValue.map(value => <div style={{ marginBottom : 10, width: "100%", display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                        {subValue.map(value => <div style={{ marginBottom : 10, width: "100%", display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Typography variant="body2" key={value}>
                                 {value.split(' : ')[0]}
 

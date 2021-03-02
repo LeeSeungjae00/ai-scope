@@ -9,6 +9,7 @@ import {CircularProgress , Fade , Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {useDropzone} from 'react-dropzone'
 import { FolderOpenOutlined ,MouseOutlined } from '@material-ui/icons';
+import ImgAlert from './Container/ImgAlert'
 
 const useStyles = makeStyles((theme) => ({
   mainProgress: {
@@ -138,6 +139,7 @@ function App() {
     <>
     <Fade in = {loading}><div className = "screenblru"><CircularProgress size={90} className = {classes.mainProgress}/></div></Fade>
     <div className="App">
+      <ImgAlert></ImgAlert>
       <div {...getRootProps()} className="priveiw-rapping">
         {(preview === null) ? 
           <div className = 'non-priveiw'>
@@ -149,7 +151,10 @@ function App() {
           </div>
          :preview}
       </div>
-      <Hedaer title="AI-assisted Endoscopic Diagnostic Device"></Hedaer>
+      <Hedaer title={<>
+        <span className = "title maintitle">AI-Scope &nbsp;</span>
+        <span className = "title">Assisted Endoscpic Diagnosic Device</span>
+      </>}></Hedaer>
       <Side
         onChangeFile={handleFileOnChange}
         onFileButtonClick={handleFileButtonClick}

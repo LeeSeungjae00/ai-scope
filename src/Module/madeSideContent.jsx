@@ -1,3 +1,10 @@
+const titleMap = {
+    "EGC" : "Early gastric cancer",
+    "AGC" : "Advanced gastric cancer",
+    "BGU" : "Benign gastric cancer"
+}
+
+
 export default function madeSideContent(result) {
     if (result.length < 3) return [];
     const resultArray = [];
@@ -8,10 +15,10 @@ export default function madeSideContent(result) {
 
     resultArray.push({
         title: "Differential diganosis",
-        mainValue: `${Object.keys(result[0])[0]} : ${result[0][Object.keys(result[0])].value}%`,
+        mainValue: `${titleMap[Object.keys(result[0])[0]]} : ${result[0][Object.keys(result[0])].value}%`,
         subValue: [
-            `${Object.keys(result[1])[0]} : ${result[1][Object.keys(result[1])].value}%`,
-            `${Object.keys(result[2])[0]} : ${result[2][Object.keys(result[2])].value}%`
+            `${titleMap[Object.keys(result[1])[0]]} : ${result[1][Object.keys(result[1])].value}%`,
+            `${titleMap[Object.keys(result[2])[0]]} : ${result[2][Object.keys(result[2])].value}%`
         ]
     })
 
@@ -21,7 +28,7 @@ export default function madeSideContent(result) {
         const { T1a, T1b } = result[0]["EGC"].depth;
 
         resultArray.push({
-            title: "Depth of invasion in EGC",
+            title: "Depth of invasion in Early gastric cancer",
             mainValue: `${T1a > T1b ?
                 "T1a : " + T1a + "%" :
                 "T1b : " + T1b + "%"}`,
