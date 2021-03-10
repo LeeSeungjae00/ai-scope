@@ -27,9 +27,8 @@ function App() {
   const [sideContentArray, setSideContentArray] = useState([]);
   const onDrop = useCallback(acceptedFiles => {
     console.log(acceptedFiles);
-    sideContentArray.splice(0);
 
-    setSideContentArray(sideContentArray);
+    setSideContentArray(s => s.slice(0,0));
 
     let file = acceptedFiles[0];
     if(file?.type.split('/')[0] !== "image"){
@@ -41,8 +40,6 @@ function App() {
     reader.onloadend = (e) => {
       setFile(file);
       setPreviewURL(reader.result);
-      // setAfterPreview(<div style = {{width : "100%"}}></div>)
-      // setAfterPreviewURL(reader.result);
     }
     if (file)
       reader.readAsDataURL(file);
@@ -58,9 +55,7 @@ function App() {
   }, [previewURL, file])
 
   const handleFileOnChange = (event) => {
-    sideContentArray.splice(0);
-
-    setSideContentArray(sideContentArray);
+    setSideContentArray(s => s.slice(0,0));
 
     let file = event.target.files[0];
     if(file?.type.split('/')[0] !== "image"){
@@ -96,40 +91,33 @@ function App() {
         setPreviewURL("data:image/png;base64," + result);
         setPreview(<img alt="./alt.jpeg" className='img_preview' src={previewURL}></img>);
 
-        sideContentArray.splice(0);
+        setSideContentArray(...madeSideContent([{BGU}, {EGC}, {AGC}]));
 
-        sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
-        setSideContentArray(sideContentArray);
-
-        
         setLoading(false);
       }else{
         alert('Please, Upload File');
       }
     } catch (error) {
 
-      // let fakeData = {
-      //   result : `/fakeResultImg.png`,
-      //   BGU : { value : 13 },
-      //   EGC : {
-      //     value : 78.2,
-      //     depth : {
-      //       T1a : 21.8,
-      //       T1b : 78.2
-      //     }
-      //   },
-      //   AGC : { value : 24.6 }
-      // }
+      let fakeData = {
+        result : `/fakeResultImg.png`,
+        BGU : { value : 13 },
+        EGC : {
+          value : 78.2,
+          depth : {
+            T1a : 21.8,
+            T1b : 78.2
+          }
+        },
+        AGC : { value : 24.6 }
+      }
 
-      // const {result, BGU, EGC, AGC} = fakeData;
+      const {result, BGU, EGC, AGC} = fakeData;
 
-      // setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
+      setPreview(<img alt="./alt.jpeg" className='img_preview' src={result}></img>);
 
-      // sideContentArray.splice(0);
-
-      // sideContentArray.push(...madeSideContent([{BGU}, {EGC}, {AGC}]));
-      // setSideContentArray(sideContentArray);
-      // console.log(sideContentArray);
+      setSideContentArray(madeSideContent([{BGU}, {EGC}, {AGC}]));
+      console.log(sideContentArray);
 
       setLoading(false);
     }
@@ -152,8 +140,8 @@ function App() {
          :preview}
       </div>
       <Hedaer title={<>
-        <span className = "title maintitle">AI-Scope &nbsp;</span>
-        <span className = "title">Assisted Endoscpic Diagnosic Device</span>
+        <span className = "title maintitle">AI-SCOPE &nbsp;</span>
+        <span className = "title">AI-assisted Endoscopic Diagnostic Device</span>
       </>}></Hedaer>
       <Side
         onChangeFile={handleFileOnChange}

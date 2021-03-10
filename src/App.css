@@ -154,6 +154,7 @@ hr{
 .title{
   color: #a8a8a8;
   font-size: 1rem;
+  text-transform: none;
   /* font-family: 'Kaushan Script', cursive; */
 }
 
